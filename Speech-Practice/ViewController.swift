@@ -7,13 +7,22 @@
 
 import UIKit
 import Speech
+import AVFoundation
 
 final class ViewController: UIViewController {
+    
+    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var startButton: UIButton!
     
     private var audioFile: AVAudioFile!
     private var croppedFiles = [File]()
     private var croppedFileCount = 0
-    
+    private var speechRecognizer: SFSpeechRecognizer?
+    private var recognitionRequest: SFSpeechURLRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    private var speechText = ""
+    private var currentIndex = 0
+
     private struct File {
         var url: URL
         var startTime: Double
@@ -32,7 +41,7 @@ final class ViewController: UIViewController {
     private func cropFile() {
         if let audioPath = Bundle.main.path(forResource: "sample", ofType: "m4a") {
             let audioFileURL = URL(fileURLWithPath: audioPath)
-            self.audioFile = try! AVAudioFile(forReading: audioFileURL)
+            audioFile = try! AVAudioFile(forReading: audioFileURL)
             let recordedTime = Double(audioFile.length) / audioFile.fileFormat.sampleRate
             let oneFileTime = Double(60)
             var startTime = Double(0)
@@ -87,8 +96,39 @@ final class ViewController: UIViewController {
     }
     
     private func initalizeSpeechFramework() {
-        
+        recognitionRequest = SFSpeechURLRecognitionRequest(url: croppedFiles[currentIndex].url)
+        guard let localeIdentifier = NSLocale.preferredLanguages.first,
+              let request = recognitionRequest else { return }
+        speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: localeIdentifier))
+        recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: { result, error in
+            if let error = error {
+                print("DEBUG_PRINT: ", error)
+                return
+            }
+            if let result = result {
+                self.textView.text = self.speechText + result.bestTranscription.formattedString
+                if result.isFinal {
+                    self.finishOrRestartSpeechFramework()
+                }
+            }
+        })
     }
-
+    
+    private func finishOrRestartSpeechFramework() {
+        recognitionTask?.cancel()
+        recognitionTask?.finish()
+        speechText = textView.text
+        currentIndex += 1
+        if currentIndex < croppedFiles.count {
+            initalizeSpeechFramework()
+        }
+    }
+    
+    @IBAction private func startButtonDidTapped(_ sender: Any) {
+        textView.text = ""
+        speechText = ""
+        cropFile()
+    }
+    
 }
 

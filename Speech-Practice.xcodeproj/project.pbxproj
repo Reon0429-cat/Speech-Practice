@@ -16,6 +16,7 @@
 		AB1B1DA82745F858000F8220 /* Speech_PracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1B1DA72745F858000F8220 /* Speech_PracticeTests.swift */; };
 		AB1B1DB22745F858000F8220 /* Speech_PracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1B1DB12745F858000F8220 /* Speech_PracticeUITests.swift */; };
 		AB1B1DB42745F858000F8220 /* Speech_PracticeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1B1DB32745F858000F8220 /* Speech_PracticeUITestsLaunchTests.swift */; };
+		AB1B1DC1274601F2000F8220 /* sample.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AB1B1DC0274601F2000F8220 /* sample.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		AB1B1DAD2745F858000F8220 /* Speech-PracticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Speech-PracticeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1B1DB12745F858000F8220 /* Speech_PracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech_PracticeUITests.swift; sourceTree = "<group>"; };
 		AB1B1DB32745F858000F8220 /* Speech_PracticeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech_PracticeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AB1B1DC0274601F2000F8220 /* sample.m4a */ = {isa = PBXFileReference; lastKnownFileType = text; path = sample.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				AB1B1D902745F855000F8220 /* AppDelegate.swift */,
 				AB1B1D922745F855000F8220 /* SceneDelegate.swift */,
 				AB1B1D942745F855000F8220 /* ViewController.swift */,
+				AB1B1DC0274601F2000F8220 /* sample.m4a */,
 				AB1B1D962745F855000F8220 /* Main.storyboard */,
 				AB1B1D992745F858000F8220 /* Assets.xcassets */,
 				AB1B1D9B2745F858000F8220 /* LaunchScreen.storyboard */,
@@ -231,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB1B1DC1274601F2000F8220 /* sample.m4a in Resources */,
 				AB1B1D9D2745F858000F8220 /* LaunchScreen.storyboard in Resources */,
 				AB1B1D9A2745F858000F8220 /* Assets.xcassets in Resources */,
 				AB1B1D982745F855000F8220 /* Main.storyboard in Resources */,
